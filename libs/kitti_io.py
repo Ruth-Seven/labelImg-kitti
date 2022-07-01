@@ -51,6 +51,9 @@ class KITTIWriter:
         h = float((size[1]))
 
         rotation = float(rotation)
+        
+        print("delete detail:", box)
+        print("delete detail:", a, b)
 
         # PR387
         boxName = box['name']
@@ -58,7 +61,6 @@ class KITTIWriter:
             classList.append(boxName)
 
         classIndex = classList.index(boxName)
-
         return classIndex, xcen, ycen, w, h, rotation
 
     def save(self, classList=[], targetFile=None):
@@ -136,13 +138,13 @@ class KittiReader:
     def kittiLine2Shape(self, classIndex, xcen, ycen, w, h, rotation):
         label = self.classes[int(classIndex)]
 
-        xmin = max(float(xcen) - float(w) / 2, 0)
-        xmax = min(float(xcen) + float(w) / 2, self.imgSize[1])
-        ymin = max(float(ycen) - float(h) / 2, 0)
-        ymax = min(float(ycen) + float(h) / 2, self.imgSize[0])
-
+        xmin = float(xcen) - float(w) / 2
+        xmax = float(xcen) + float(w) / 2
+        ymin = float(ycen) - float(h) / 2
+        ymax = float(ycen) + float(h) / 2
+        
         rotation = float(rotation)
-
+        #delete withou rotation？
         return label, xmin, ymin, xmax, ymax, rotation
 
     def parseYoloFormat(self):

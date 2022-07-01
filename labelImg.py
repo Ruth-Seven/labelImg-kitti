@@ -778,9 +778,11 @@ class MainWindow(QMainWindow, WindowMixin):
             for x, y in points:
 
                 # Ensure the labels are within the bounds of the image. If not, fix them.
-                x, y, snapped = self.canvas.snapPointToCanvas(x, y)
-                if snapped:
-                    self.setDirty()
+                # delete ！ disables the feature baseuse it will cause obvious bugs
+
+                # x, y, snapped = self.canvas.snapPointToCanvas(x, y)
+                # if snapped:
+                # self.setDirty()
 
                 shape.addPoint(QPointF(x, y))
             if self.usingKittiFormat:
@@ -1029,6 +1031,8 @@ class MainWindow(QMainWindow, WindowMixin):
         # Highlight the file item
         if unicodeFilePath and self.fileListWidget.count() > 0:
             if unicodeFilePath in self.mImgList:
+
+                print("delete    ", unicodeFilePath)
                 index = self.mImgList.index(unicodeFilePath)
                 fileWidgetItem = self.fileListWidget.item(index)
                 fileWidgetItem.setSelected(True)
@@ -1089,6 +1093,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 KITTI > PascalXML > YOLO
                 """
                 if os.path.isfile(txtPath):
+                    print("delete    load labelfile", unicodeFilePath)
                     self.loadKITTITXTByFilename(txtPath)
                 elif os.path.isfile(xmlPath):
                     self.loadPascalXMLByFilename(xmlPath)
@@ -1479,7 +1484,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.set_format(FORMAT_KITTI)
         tKittiParseReader = KittiReader(txtPath, self.image)
         shapes = tKittiParseReader.getShapes()
-        print (shapes)
+        print ("delete     shapes", shapes)
         self.loadLabels(shapes)
         self.canvas.verified = tKittiParseReader.verified
     
