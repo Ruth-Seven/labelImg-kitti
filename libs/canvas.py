@@ -955,7 +955,7 @@ class Canvas(QWidget):
 
     def outOfPixmap(self, p):
         #todo
-        return ture #ignore outOfPixmap to enable out-of-box annotation
+        return False  #ignore outOfPixmap to enable out-of-box annotation
     
         w, h = self.pixmap.width(), self.pixmap.height()
         # return not (0 <= p.x() <= w and 0 <= p.y() <= h)
