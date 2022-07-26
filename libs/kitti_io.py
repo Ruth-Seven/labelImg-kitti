@@ -51,9 +51,8 @@ class KITTIWriter:
         h = float((size[1]))
 
         rotation = float(rotation)
-        
-        print("delete detail:", box)
-        print("delete detail:", a, b)
+        #todo
+        print("BndBox2KittiLine::box:", box)
 
         # PR387
         boxName = box['name']

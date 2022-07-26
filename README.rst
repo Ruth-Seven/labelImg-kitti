@@ -47,7 +47,7 @@ Installation
 > personal recommendation: 
 ```shell
 $pyrcc5 -o lib/resources.py resources.qrc
-$pyinstaller labelImg.py # other setting has wrotten in this file.
+$pyinstaller ./build-tools/labelImg-[*].spec  # other setting has wrotten in this file.
 $ cd dist/labelImg
 # run the exe or app 
 ```

@@ -163,13 +163,14 @@ class LabelFile(object):
             xmax = max(x, xmax)
             ymax = max(y, ymax)
 
-        # Martin Kersner, 2015/11/12
-        # 0-valued coordinates of BB caused an error while
-        # training faster-rcnn object detector.
-        if xmin < 1:
-            xmin = 1
+        #ignore 1-zero limitations for out-of-box annotation
+        # # Martin Kersner, 2015/11/12
+        # # 0-valued coordinates of BB caused an error while
+        # # training faster-rcnn object detector.
+        # if xmin < 1:
+        #     xmin = 1
 
-        if ymin < 1:
-            ymin = 1
+        # if ymin < 1:
+        #     ymin = 1
 
         return (xmin, ymin, xmax, ymax)

@@ -898,6 +898,8 @@ class MainWindow(QMainWindow, WindowMixin):
 
         position MUST be in global coordinates.
         """
+        #todo
+        print(self.labelHist)
         if not self.useDefaultLabelCheckbox.isChecked() or not self.defaultLabelTextLine.text():
             if len(self.labelHist) > 0:
                 self.labelDialog = LabelDialog(
@@ -1032,7 +1034,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if unicodeFilePath and self.fileListWidget.count() > 0:
             if unicodeFilePath in self.mImgList:
 
-                print("delete    ", unicodeFilePath)
+                print("loadFile::ImgPath  ", unicodeFilePath)
                 index = self.mImgList.index(unicodeFilePath)
                 fileWidgetItem = self.fileListWidget.item(index)
                 fileWidgetItem.setSelected(True)
@@ -1093,7 +1095,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 KITTI > PascalXML > YOLO
                 """
                 if os.path.isfile(txtPath):
-                    print("delete    load labelfile", unicodeFilePath)
+                    print("load labelfile(anno)", unicodeFilePath)
                     self.loadKITTITXTByFilename(txtPath)
                 elif os.path.isfile(xmlPath):
                     self.loadPascalXMLByFilename(xmlPath)
@@ -1467,6 +1469,8 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def loadPredefinedClasses(self, predefClassesFile):
         if os.path.exists(predefClassesFile) is True:
+            #todo
+            print("loading", predefClassesFile)
             with codecs.open(predefClassesFile, 'r', 'utf8') as f:
                 for line in f:
                     line = line.strip()
@@ -1484,7 +1488,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.set_format(FORMAT_KITTI)
         tKittiParseReader = KittiReader(txtPath, self.image)
         shapes = tKittiParseReader.getShapes()
-        print ("delete     shapes", shapes)
+        print ("shapes", shapes)
         self.loadLabels(shapes)
         self.canvas.verified = tKittiParseReader.verified
     

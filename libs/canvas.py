@@ -839,9 +839,11 @@ class Canvas(QWidget):
 
         maxx = self.pixmap.width() - maxx
         maxy = self.pixmap.height() - maxy
-        dp = QPointF(max(min(maxx, dp.x()), -minx),
-                max(min(maxy, dp.y()), -miny))
-
+        #todo 
+        # ignore move limitation to enable out-of-box annotation
+        # dp = QPointF(max(min(maxx, dp.x()), -minx),
+        #         max(min(maxy, dp.y()), -miny))
+        
         if dp:
             # shape.moveBy(dp)
             # self.prevPoint = pos
@@ -952,6 +954,9 @@ class Canvas(QWidget):
         return QPointF(x, y)
 
     def outOfPixmap(self, p):
+        #todo
+        return ture #ignore outOfPixmap to enable out-of-box annotation
+    
         w, h = self.pixmap.width(), self.pixmap.height()
         # return not (0 <= p.x() <= w and 0 <= p.y() <= h)
         return not (0 <= p.x() < w and 0 <= p.y() < h)
